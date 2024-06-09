@@ -1,0 +1,28 @@
+姓名： 微信
+在：
+  活动调度：
+  议程：
+    #代表国际标准时间23点0分，北京时间需要+8小时，代表北京时间上午7点运行
+- cron： '0 23 * * *' 0 23 * * * '
+工作：
+#将练习中所有的作业组合在一起
+  建造：
+  #定义名为 build 的作业。子键将定义作业的属性
+    运行于： ubuntu-latest
+    脚步：
+      -用途：actions/checkout@v2
+    
+      - name ：设置Python 3.9
+        用途：actions/setup-python@v2
+        和：
+          python 版本：3.9.1
+      -名称：设置时区
+        运行：|
+          cp /usr/share/zoneinfo/亚洲/上海/etc/localtime
+      -名称：安装pip包
+        运行：|
+          python -m pip 安装--升级pip
+          pip3 安装 -r 要求.txt
+      -名称：微信
+        运行：|
+          python3 main.py
